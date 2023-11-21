@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 """
 class Ejemplo(models.Model o lo que necesites heredar):
-    campo1 = models.CharField(verbose_name='Nombre del campo' ,max_length=50)
+    campo1 = models.CharField(verbose_name='Nombre del campo', max_length=50)
     campo2 = models.ForeingKey(Para Relacionar Modelos)
     
     class Meta:
