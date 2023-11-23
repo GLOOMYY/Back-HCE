@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import Profesional
 
 # Create your models here.
 """
@@ -15,7 +16,16 @@ class Ejemplo(models.Model o lo que necesites heredar):
 """
 
 
+class Formularios(models.Model):
+    profesional = models.ForeignKey(to=Profesional, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Formulario"
+        verbose_name_plural = "Formularios"
+
+
 class SignosVitales(models.Model):
+    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
     tension_arterial_sistolica = models.IntegerField(
         verbose_name="Tension Arterial Sistolica"
     )
@@ -35,6 +45,7 @@ class SignosVitales(models.Model):
 
 
 class DatosAntropometricos(models.Model):
+    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
     talla = models.IntegerField(verbose_name="Talla")
     peso = models.IntegerField(verbose_name="Peso")
     observaciones = models.TextField(verbose_name="Observaciones Generales")
@@ -48,6 +59,7 @@ class DatosAntropometricos(models.Model):
 
 
 class Observaciones(models.Model):
+    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
     observaciones = models.TextField(verbose_name="Observaciones")
 
     class Meta:
@@ -58,8 +70,10 @@ class Observaciones(models.Model):
         return f"Observaciones"
 
 
-# Leer mañada de ManyToManyField
+# Leer mañana de ManyToManyField
 class NotasAclaratorias:
+    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
+    profesional = models.ForeignKey(to=Profesional, on_delete=models.CASCADE)
     contexto = models.TextField(verbose_name="Contexto")
     especialidad = models.CharField(verbose_name="Especialidad", max_length=50)
     fecha = models.DateField(auto_now_add=True)
