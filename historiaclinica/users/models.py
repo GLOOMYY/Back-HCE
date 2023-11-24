@@ -1,10 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 
-class Profesional(AbstractUser):
+class Profesional(models.Model):
     TYPE_ESPECIALIDAD = [
         ("Enfermeria", "Enfermeria"),
         ("General", "General"),
@@ -21,3 +20,14 @@ class Profesional(AbstractUser):
 
     def __str__(self):
         return f"Nombre: {self.nombre} - Especialidad: {self.especialidad}"
+
+
+class Paciente(models.Model):
+    documento = models.IntegerField(verbose_name="Cedula")
+
+    class Meta:
+        verbose_name = "Paciente"
+        verbose_name_plural = "Pacientes"
+
+    def __str__(self):
+        return f"Documento: {self.documento}"
