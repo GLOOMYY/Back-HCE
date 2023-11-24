@@ -1,5 +1,6 @@
 from django.db import models
-from users.models import Profesional
+from users.models import Profesional, Paciente
+from historia.models import HistoriaClinica
 
 # Create your models here.
 """
@@ -16,16 +17,91 @@ class Ejemplo(models.Model o lo que necesites heredar):
 """
 
 
-class Formularios(models.Model):
+class Seguimiento(models.Model):
+    # Relacion
+    historia = models.ForeignKey(to=HistoriaClinica, on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return f"Seguimiento"
+
+
+class SeguimientoEspecialidad(Seguimiento):
+    class Meta:
+        verbose_name = "Seguimiento Especialidad"
+        verbose_name_plural = "Seguimientos Especialidad"
+
+    def __str__(self):
+        return f"Seguimiento Especialidad"
+
+
+class SeguimientoMedicinaGeneral(Seguimiento):
+    class Meta:
+        verbose_name = "Seguimiento Medicina General"
+        verbose_name_plural = "Seguimientos Medicina General"
+
+    def __str__(self):
+        return f"Seguimiento Medicina General"
+
+
+class SeguimientoEnfermeria(Seguimiento):
+    class Meta:
+        verbose_name = "Seguimiento Enfermeria"
+        verbose_name_plural = "Seguimientos Enfermeria"
+
+    def __str__(self):
+        return f"Seguimiento Enfermeria"
+
+
+class Estrategia(models.Model):
+    # Relacion
+    seguimiento_especialidad = models.ForeignKey(
+        to=SeguimientoEspecialidad, on_delete=models.CASCADE
+    )
+
+    # Campos
+    objetivo = models.TextField(verbose_name="Objetivo")
+    subjetivo = models.TextField(verbose_name="Subjetivo")
+    analisis = models.TextField(verbose_name="Analisis")
+    plan = models.TextField(verbose_name="Plan")
+
+    class Meta:
+        verbose_name = "Estrategia"
+        verbose_name_plural = "Estrategias"
+
+    def __str__(self):
+        return f"Estrategias"
+
+
+class Formulario(models.Model):
+    # Relaciones
     profesional = models.ForeignKey(to=Profesional, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(to=Paciente, on_delete=models.CASCADE)
+    seguimiento_especialidad = models.ForeignKey(
+        to=SeguimientoEspecialidad, on_delete=models.CASCADE
+    )
+    seguimiento_medicina_general = models.ForeignKey(
+        to=SeguimientoMedicinaGeneral, on_delete=models.CASCADE
+    )
+    seguimiento_enfermeria = models.ForeignKey(
+        to=SeguimientoEnfermeria, on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = "Formulario"
         verbose_name_plural = "Formularios"
 
+    def __str__(self):
+        return f"Formulario {self.paciente}"
+
 
 class SignosVitales(models.Model):
-    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
+    # Relaciones
+    formulario = models.ForeignKey(to=Formulario, on_delete=models.CASCADE)
+
+    # Campos
     tension_arterial_sistolica = models.IntegerField(
         verbose_name="Tension Arterial Sistolica"
     )
@@ -45,7 +121,10 @@ class SignosVitales(models.Model):
 
 
 class DatosAntropometricos(models.Model):
-    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
+    # Relaciones
+    formulario = models.ForeignKey(to=Formulario, on_delete=models.CASCADE)
+
+    # Campos
     talla = models.IntegerField(verbose_name="Talla")
     peso = models.IntegerField(verbose_name="Peso")
     observaciones = models.TextField(verbose_name="Observaciones Generales")
@@ -59,7 +138,10 @@ class DatosAntropometricos(models.Model):
 
 
 class Observaciones(models.Model):
-    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
+    # Relaciones
+    formulario = models.ForeignKey(to=Formulario, on_delete=models.CASCADE)
+
+    # Campos
     observaciones = models.TextField(verbose_name="Observaciones")
 
     class Meta:
@@ -70,11 +152,20 @@ class Observaciones(models.Model):
         return f"Observaciones"
 
 
-# Leer mañana de ManyToManyField
-class NotasAclaratorias:
-    formulario = models.ForeignKey(to=Formularios, on_delete=models.CASCADE)
+class NotasAclaratorias(models.Model):
+    # Relaciones
+    formulario = models.ForeignKey(to=Formulario, on_delete=models.CASCADE)
     profesional = models.ForeignKey(to=Profesional, on_delete=models.CASCADE)
+    historia = models.ForeignKey(to=HistoriaClinica, on_delete=models.CASCADE)
+
+    # Campos
     contexto = models.TextField(verbose_name="Contexto")
     especialidad = models.CharField(verbose_name="Especialidad", max_length=50)
     fecha = models.DateField(auto_now_add=True)
-    # Profesional = Debe ser ForeingKey
+
+    class Meta:
+        verbose_name = "Nota Aclaratoria"
+        verbose_name_plural = "Notas Aclaratorias"
+
+    def __str__(self):
+        return f"Nota Aclaratoria {self.fecha}"

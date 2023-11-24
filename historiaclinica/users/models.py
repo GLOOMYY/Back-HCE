@@ -4,6 +4,8 @@ from django.db import models
 
 
 class Profesional(models.Model):
+    """Profesional de la salud"""
+
     TYPE_ESPECIALIDAD = [
         ("Enfermeria", "Enfermeria"),
         ("General", "General"),
@@ -23,6 +25,8 @@ class Profesional(models.Model):
 
 
 class Paciente(models.Model):
+    """Paciente"""
+
     documento = models.IntegerField(verbose_name="Cedula")
 
     class Meta:
