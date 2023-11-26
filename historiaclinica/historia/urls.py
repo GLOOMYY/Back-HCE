@@ -1,5 +1,8 @@
 from django.urls import path
+from .views import HistoraClinicaView
 
 # Importar Vistas
 
-urlpatterns = []
+urlpatterns = [
+    path(route="list/", view=HistoraClinicaView.as_view()),
+]

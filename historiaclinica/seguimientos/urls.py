@@ -4,5 +4,5 @@ from .views import SeguimientoEspecialidadView
 # Importar Vistas
 
 urlpatterns = [
-    path("seguimiento/list", SeguimientoEspecialidadView.as_view()),
+    path("list/", SeguimientoEspecialidadView.as_view()),
 ]
