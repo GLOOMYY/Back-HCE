@@ -10,7 +10,7 @@ from .serializers import ProfesionalSerializer, PacienteSerializer
 class ProfesionalListView(generics.ListAPIView):
     """
     Vista que lista los Profesionales de la salud
-    Usar por GET
+    Metodo GET
     """
 
     queryset = Profesional.objects.all()
@@ -22,7 +22,7 @@ class ProfesionalListView(generics.ListAPIView):
 class ProfesionalCreateView(generics.CreateAPIView):
     """
     Vista para crear Profesionales
-    Usar por POST
+    Metodo POST
     """
 
     queryset = Profesional.objects.all()
@@ -35,7 +35,7 @@ class ProfesionalCreateView(generics.CreateAPIView):
 class PacienteListView(generics.ListAPIView):
     """
     Vista que lista los Pacientes
-    Usar por GET
+    Metodo GET
     """
 
     queryset = Paciente.objects.all()
@@ -45,7 +45,7 @@ class PacienteListView(generics.ListAPIView):
 class PacienteCreateView(generics.CreateAPIView):
     """
     Vista para crear Pacientes
-    Usar por POST
+    Metodo POST
     """
 
     queryset = Paciente.objects.all()

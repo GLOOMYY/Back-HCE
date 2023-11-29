@@ -10,7 +10,7 @@ from .serializers import HistoriaClinicaSerializer
 class HistoraClinicaListView(generics.ListAPIView):
     """
     Vista para listar todas las HistoriasClinicas
-    Utilizar GET
+    Metodo GET
     """
 
     queryset = HistoriaClinica.objects.all()
@@ -22,7 +22,7 @@ class HistoraClinicaListView(generics.ListAPIView):
 class HistoriaClinicaCreateView(generics.CreateAPIView):
     """
     Vista para crear HistoriasClinicas
-    Utilizar POST
+    Metodo POST
     """
 
     queryset = HistoriaClinica.objects.all()
