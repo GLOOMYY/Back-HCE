@@ -1,4 +1,5 @@
 from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import (
     SeguimientoEspecialidad,
     SeguimientoMedicinaGeneral,
@@ -34,6 +35,8 @@ class SeguimientoEspecialidadListView(generics.ListAPIView):
 
     queryset = SeguimientoEspecialidad.objects.all()
     serializer_class = SeguimientoEspecialidadSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "historia"]
 
 
 class SeguimientoEspecialidadCreateView(generics.CreateAPIView):
@@ -55,6 +58,8 @@ class SeguimientoMedicinaGeneralListView(generics.ListAPIView):
 
     queryset = SeguimientoEspecialidad.objects.all()
     serializer_class = SeguimientoEspecialidadSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "historia"]
 
 
 class SeguimientoMedicinaGeneralCreateView(generics.CreateAPIView):
@@ -76,6 +81,8 @@ class SeguimientoEnfermeriaListView(generics.ListAPIView):
 
     queryset = SeguimientoEnfermeria.objects.all()
     serializer_class = SeguimientoEnfermeriaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "historia"]
 
 
 class SeguimientoEnfermeriaCreateView(generics.CreateAPIView):
@@ -97,6 +104,8 @@ class EstrategiaListView(generics.ListAPIView):
 
     queryset = Estrategia.objects.all()
     serializer_class = EstrategiaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "seguimiento_especialidad"]
 
 
 class EstrategiaCreateView(generics.CreateAPIView):

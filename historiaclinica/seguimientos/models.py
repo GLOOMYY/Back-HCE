@@ -34,7 +34,7 @@ class SeguimientoEspecialidad(Seguimiento):
         verbose_name_plural = "Seguimientos Especialidad"
 
     def __str__(self):
-        return f"Seguimiento Especialidad"
+        return f"Seguimiento Especialidad:{self.id}"
 
 
 class SeguimientoMedicinaGeneral(Seguimiento):
@@ -43,7 +43,7 @@ class SeguimientoMedicinaGeneral(Seguimiento):
         verbose_name_plural = "Seguimientos Medicina General"
 
     def __str__(self):
-        return f"Seguimiento Medicina General"
+        return f"Seguimiento Medicina General:{self.id}"
 
 
 class SeguimientoEnfermeria(Seguimiento):
@@ -52,7 +52,7 @@ class SeguimientoEnfermeria(Seguimiento):
         verbose_name_plural = "Seguimientos Enfermeria"
 
     def __str__(self):
-        return f"Seguimiento Enfermeria"
+        return f"Seguimiento Enfermeria:{self.id}"
 
 
 class Estrategia(models.Model):
@@ -72,7 +72,7 @@ class Estrategia(models.Model):
         verbose_name_plural = "Estrategias"
 
     def __str__(self):
-        return f"Estrategias"
+        return f"Estrategias:{self.id}"
 
 
 class Formulario(models.Model):
@@ -94,7 +94,7 @@ class Formulario(models.Model):
         verbose_name_plural = "Formularios"
 
     def __str__(self):
-        return f"Formulario {self.paciente}"
+        return f"Formulario: {self.paciente}"
 
 
 class SignosVitales(models.Model):
@@ -117,7 +117,7 @@ class SignosVitales(models.Model):
         verbose_name_plural = "Signos Vitales"
 
     def __str__(self):
-        return f"Signos Vitales"
+        return f"Signos Vitales: {self.id}"
 
 
 class DatosAntropometricos(models.Model):
@@ -134,7 +134,7 @@ class DatosAntropometricos(models.Model):
         verbose_name_plural = "Datos Antropometricos"
 
     def __str__(self):
-        return f"Datos Antropometricos"
+        return f"Datos Antropometricos: {self.id}"
 
 
 class Observaciones(models.Model):
@@ -149,7 +149,7 @@ class Observaciones(models.Model):
         verbose_name_plural = "Observaciones"
 
     def __str__(self):
-        return f"Observaciones"
+        return f"Observaciones:{self.id}"
 
 
 class NotasAclaratorias(models.Model):
@@ -168,4 +168,4 @@ class NotasAclaratorias(models.Model):
         verbose_name_plural = "Notas Aclaratorias"
 
     def __str__(self):
-        return f"Nota Aclaratoria {self.fecha}"
+        return f"{self.fecha} Profesional:{self.profesional} Historia:{self.historia}"
