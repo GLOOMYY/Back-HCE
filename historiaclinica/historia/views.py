@@ -11,9 +11,22 @@ from .serializers import HistoriaClinicaSerializer
 
 
 class HistoraClinicaListView(generics.ListAPIView):
-    """Vista para listar todas las HistoriasClinicas"""
+    """
+    Vista para listar todas las HistoriasClinicas
+    Utilizar GET
+    """
 
     queryset = HistoriaClinica.objects.all()
     serializer_class = HistoriaClinicaSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["paciente"]
+
+
+class HistoriaClinicaCreateView(generics.CreateAPIView):
+    """
+    Vista para crear HistoriasClinicas
+    Utilizar POST
+    """
+
+    queryset = HistoriaClinica.objects.all()
+    serializer_class = HistoriaClinicaSerializer
