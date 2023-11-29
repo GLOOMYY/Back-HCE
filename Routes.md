@@ -12,13 +12,24 @@ A continuación se pondran las rutas disponibles para cada una de estas apps y s
 
 Esta app se divide en dos principales modelos
 
-### Profesional de la salud
+#### Profesional de la salud
 
-- [Lista Profesionales](http://127.0.0.1:8000/users/profesional/list/):
+- [Lista Profesionales](http://127.0.0.1:8000/users/profesional/):
   - Metodo: GET
+  - Filtros: especialidad
   - Retorna los profesionales de la salud
+- [Crear Profesionales](http://127.0.0.1:8000/users/profesional/create):
+  - Metodo: POST
+  - Crea profesionales de la salud
 
-### Paciente
+#### Paciente
+
+- [Lista Pacientes](http://127.0.0.1:8000/users/paciente/):
+  - Metodo: GET
+  - Retorna los pacientes
+- [Crear Pacientes](http://127.0.0.1:8000/users/paciente/create):
+  - Metodo: POST
+  - Crea pacientes
 
 ## Historia
 
