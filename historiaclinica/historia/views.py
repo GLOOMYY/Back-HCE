@@ -7,7 +7,12 @@ from .serializers import HistoriaClinicaSerializer
 # Create your views here.
 
 
-class HistoraClinicaView(generics.ListAPIView):
+# Vistas de la HistoriaClinica
+
+
+class HistoraClinicaListView(generics.ListAPIView):
+    """Vista para listar todas las HistoriasClinicas"""
+
     queryset = HistoriaClinica.objects.all()
     serializer_class = HistoriaClinicaSerializer
     filter_backends = [DjangoFilterBackend]

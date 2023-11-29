@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import SeguimientoEspecialidadView
+from .views import SeguimientoEspecialidadListView
 
 # Importar Vistas
 
 urlpatterns = [
-    path("list/", SeguimientoEspecialidadView.as_view()),
+    # SeguimientoEspecialidadRoutes
+    path("especialidad/list/", SeguimientoEspecialidadListView.as_view()),
 ]
