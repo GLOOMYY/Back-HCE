@@ -1,11 +1,17 @@
 from django.urls import path
-from .views import PacienteView, ProfesionalView
+from .views import (
+    ProfesionalListView,
+    ProfesionalCreateView,
+    PacienteListView,
+    PacienteCreateView,
+)
 
-# Pendiente import de Views
 
 urlpatterns = [
     # Profesional URLS
-    path(route="profesional/list/", view=ProfesionalView.as_view()),
+    path(route="profesional/", view=ProfesionalListView.as_view()),  # GET
+    path(route="profesional/create", view=ProfesionalCreateView.as_view()),  # POST
     # Paciente URLS
-    path(route="paciente/list/", view=PacienteView.as_view()),
+    path(route="paciente/", view=PacienteListView.as_view()),  # GET
+    path(route="paciente/create", view=PacienteCreateView.as_view()),  # POST
 ]

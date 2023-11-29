@@ -4,9 +4,6 @@ from .models import HistoriaClinica
 from .serializers import HistoriaClinicaSerializer
 
 
-# Create your views here.
-
-
 # Vistas de la HistoriaClinica
 
 
