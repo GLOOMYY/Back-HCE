@@ -6,6 +6,8 @@ El proyecto se divide en 3 apps
 - Seguimientos
 - Users
 
+Para enviar filtros se deben usar querys, para crear pacientes se envia la informacion por body
+
 A continuación se pondran las rutas disponibles para cada una de estas apps y sus respectivos metodos
 
 ## Users

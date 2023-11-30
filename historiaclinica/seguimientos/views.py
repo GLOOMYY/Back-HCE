@@ -127,6 +127,15 @@ class FormularioListView(generics.ListAPIView):
 
     queryset = Formulario.objects.all()
     serializer_class = FormularioSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = [
+        "id",
+        "profesional",
+        "paciente",
+        "seguimiento_especialidad",
+        "seguimiento_medicina_general",
+        "seguimiento_enfermeria",
+    ]
 
 
 class FormularioCreateView(generics.CreateAPIView):
@@ -148,6 +157,8 @@ class SignosVitalesListView(generics.ListAPIView):
 
     queryset = SignosVitales.objects.all()
     serializer_class = SignosVitalesSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "formulario"]
 
 
 class SignosVitalesCreateView(generics.CreateAPIView):
@@ -169,6 +180,8 @@ class DatosAntropometricosListView(generics.ListAPIView):
 
     queryset = DatosAntropometricos.objects.all()
     serializer_class = DatosAntropometricosSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "formulario"]
 
 
 class DatosAntropometricosCreateView(generics.CreateAPIView):
@@ -190,6 +203,8 @@ class ObservacionesListView(generics.ListAPIView):
 
     queryset = Observaciones.objects.all()
     serializer_class = ObservacionesSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "formulario"]
 
 
 class ObservacionesCreateView(generics.CreateAPIView):
@@ -211,6 +226,14 @@ class NotasAclaratoriasListView(generics.ListAPIView):
 
     queryset = NotasAclaratorias.objects.all()
     serializer_class = NotasAclaratoriasSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = [
+        "id",
+        "especialidad",
+        "formulario",
+        "profesional",
+        "historia",
+    ]
 
 
 class NotasAclaratoriasCreateView(generics.CreateAPIView):
